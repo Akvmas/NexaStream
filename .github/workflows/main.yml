@@ -26,8 +26,7 @@ jobs:
           echo "$SSH_KEY" >> ~/.ssh/id_rsa
           # Le fichier id_rsa DOIT avoir les bon droit
           chmod 600 ~/.ssh/id_rsa
-          
-          END
+
           
       # Connexion SSH ET GIT pull dans la foulée
       - name: "Connexion SSH et Git Pull"
