@@ -31,12 +31,12 @@ jobs:
       # Connexion SSH ET GIT pull dans la foulée
       - name: "Connexion SSH et Git Pull"
         env:
-          SSH_KEY: ${{ secrets.SSH_KEY }}
+          SSH_PORT: ${{ secrets.SSH_PORT }}
           SSH_HOST: ${{ secrets.SSH_HOST }}
           SHH_USER: ${{ secrets.SSH_USER }}
           
         run : |
-          ssh $SSH_USER@$SSH_HOST 'cd /var/www/html/NexaStream/ && git fetch && git pull'
+          ssh $SSH_USER@$SSH_HOST -p $SSH_PORT 'cd /var/www/html/NexaStream/ && git fetch && git pull'
 
 
 
