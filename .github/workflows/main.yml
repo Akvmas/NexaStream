@@ -1,0 +1,46 @@
+name: "Déploiement auto suite à un push sur la branch master"
+# trigger au push sur la branch master
+on:
+  push:
+    branches:
+    - master
+# création de la VM Ubuntu
+jobs:
+  creation-vm:
+    name: "création d'une instance Ubuntu"
+    runs-on: ubuntu-latest
+    
+    steps:
+    #ajout de la clé pv de l'user github
+      - name: "Création d'une clé ssh"
+        env:
+          SSH_KEY: ${{ secrets.SSH_KEY }}
+          SSH_HOST: ${{ secrets.SSH_HOST }}
+          SHH_USER: ${{ secrets.SSH_USER }}
+
+        run: |
+          # Création du dossier ~/.ssh
+          mkdir -p ~/.ssh/
+
+          #Ajout de la clé public dans le fichier id_rsa.pub
+          echo "$SSH_KEY" >> ~/.ssh/id_rsa
+          # Le fichier id_rsa DOIT avoir les bon droit
+          chmod 600 ~/.ssh/id_rsa
+          
+          END
+          
+      # Connexion SSH ET GIT pull dans la foulée
+      - name: "Connexion SSH et Git Pull"
+        env:
+          SSH_KEY: ${{ secrets.SSH_KEY }}
+          SSH_HOST: ${{ secrets.SSH_HOST }}
+          SHH_USER: ${{ secrets.SSH_USER }}
+          
+        run : |
+          ssh $SSH_USER@$SSH_HOST 'cd /var/www/html/NexaStream/ && git fetch && git pull'
+
+
+
+
+
+          
