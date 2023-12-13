@@ -1,45 +1,50 @@
-name: "Déploiement auto suite à un push sur la branch master"
-# trigger au push sur la branch master
+# Nom pour ce workflow
+name: "Déploiement auto suite à un push sur la branche master"
+
+# ----------------------------------------------------------
+# Trigger sur push sur la branche master
 on:
   push:
     branches:
-    - master
-# création de la VM Ubuntu
+      - master
+
+# ----------------------------------------------------------
 jobs:
+  # Création de la VM Ubuntu
   creation-vm:
-    name: "création d'une instance Ubuntu"
+    name: "Création d'une instance de Ubuntu"
     runs-on: ubuntu-latest
     
     steps:
-    #ajout de la clé pv de l'user github
-      - name: "Création d'une clé ssh"
+    
+      # Ajout du jeu de clés de l'utilisateur de déploiement
+      # sur cette vm qui vient d'etre créée
+      - name: "Création du jeu de clé SSH pour l'utilisateur de déploiement"
+        # Récupération des variables d'environnement
         env:
-          SSH_KEY: ${{secrets.SSH_KEY}}
-          SSH_HOST: ${{secrets.SSH_HOST}}
-          SHH_USER: ${{secrets.SSH_USER}}
-
+          SSH_KEY: ${{ secrets.SSH_KEY }}
+          SSH_HOST: ${{ secrets.SSH_HOST }}
+          SSH_USER: ${{ secrets.SSH_USER }}
+          SSH_PORT: ${{ secrets.SSH_PORT }}
         run: |
-          # Création du dossier ~/.ssh
+          # Création dossier ~/.ssh sur la VM
           mkdir -p ~/.ssh/
 
-          #Ajout de la clé public dans le fichier id_rsa.pub
-          echo "$SSH_KEY" >> ~/.ssh/id_rsa
-          # Le fichier id_rsa DOIT avoir les bon droit
+          # Ajout de la clé privée dans le fichier ~/.ssh/id_rsa
+          echo "$SSH_KEY" > ~/.ssh/id_rsa
+
+          # Le fichier id_rsa DOIT avoir les bons droits!
           chmod 600 ~/.ssh/id_rsa
+
           cat >>~/.ssh/config <<END
-          Host serveurProdVM
-          HostName $SSH_HOST
-          User $SSH_USER
-          Port $SSH_PORT
-          IdentityFile ~/.ssh/id_rsa
-          StrictHostKeyChecking no
-          
-      # Connexion SSH ET GIT pull dans la foulée
+            Host serveurProdVM
+              HostName $SSH_HOST
+              User $SSH_USER
+              Port $SSH_PORT
+              IdentityFile ~/.ssh/id_rsa
+              StrictHostKeyChecking no
+
+      # Connexion SSH ET Git pull dans la foulée
       - name: "Connexion SSH et Git Pull"
-        env:
-          SSH_PORT: ${{ secrets.SSH_PORT }}
-          SSH_HOST: ${{ secrets.SSH_HOST }}
-          SHH_USER: ${{ secrets.SSH_USER }}
-          
-        run : |
-                    ssh serveurProdVM 'cd /var/www/html/NexaStream/ && git fetch && git pull'
+        run: |
+          ssh serveurProdVM 'cd /var/www/html/NexaStream/ && git fetch && git pull'
