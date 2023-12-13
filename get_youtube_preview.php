@@ -1,5 +1,5 @@
 <?php
-$apiKey = 'AIzaSyAVwJZpOOhtU2Ta6NRItHm4_0zxhUyvHuI';
+$apiKey = '';
 $searchTerm = 'game';
 $maxResults = 10;
 
