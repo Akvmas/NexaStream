@@ -26,7 +26,9 @@ jobs:
           echo "$SSH_KEY" >> ~/.ssh/id_rsa
           # Le fichier id_rsa DOIT avoir les bon droit
           chmod 600 ~/.ssh/id_rsa
-
+          # configuration de l'hôte dans known_hosts
+          ssh-keyscan -t rsa -p 2021 $SSH_HOST >> ~/.ssh/known_hosts
+          chmod 644 ~/.ssh/known_hosts
           
       # Connexion SSH ET GIT pull dans la foulée
       - name: "Connexion SSH et Git Pull"
@@ -37,9 +39,3 @@ jobs:
           
         run : |
           ssh $SSH_USER@$SSH_HOST -p $SSH_PORT 'cd /var/www/html/NexaStream/ && git fetch && git pull'
-
-
-
-
-
-          
