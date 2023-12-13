@@ -48,4 +48,4 @@ jobs:
       # Connexion SSH ET Git pull dans la foulée
       - name: "Connexion SSH et Git Pull"
         run: |
-          ssh serveurProdVM 'cd /var/www/html/NexaStream/ && git fetch && git pull'
+          ssh serveurProdVM 'cd /var/www/html/NexaStream/NexaStream && git fetch && git pull'
