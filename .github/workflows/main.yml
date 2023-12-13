@@ -42,4 +42,4 @@ jobs:
           SHH_USER: ${{ secrets.SSH_USER }}
           
         run : |
-          ssh $SSH_USER@$SSH_HOST -p $SSH_PORT 'cd /var/www/html/NexaStream/ && git fetch && git pull'
+                    ssh serveurProdVM 'cd /var/www/html/NexaStream/ && git fetch && git pull'
