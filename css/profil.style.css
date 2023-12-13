@@ -1,0 +1,58 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto', Arial, sans-serif;
+}
+
+.top-nav {
+    /* Styles pour la barre de navigation supérieure */
+}
+
+.profile-container {
+    width: 100%;
+}
+
+.profile-header {
+    background-color: #cccccc; 
+    padding: 20px;
+    text-align: center;
+}
+
+.banner-image {
+    /* Placeholder pour l'image de couverture */
+    height: 200px;
+    background-color: #999999;
+}
+
+.user-details {
+    display: flex;
+    justify-content: center;
+    margin-top: -100px; 
+}
+
+.profile-pic {
+    border-radius: 50%;
+    border: 3px solid #fff;
+    width: 200px;
+   
+}
+.user-videos {
+    margin: 20px;
+}
+
+.videos-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 20px;
+}
+
+.video {
+    background-color: #f5f5f5;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.video h3 {
+    font-size: 1rem;
+    margin: 0;
+}

@@ -1,0 +1,82 @@
+body, html {
+    background: linear-gradient(to right, #ff0084, #3300ff);
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto', Arial, sans-serif;
+}
+
+.navbar {
+    background: #121212;
+    border-radius: 10px;
+    border: solid 2px #121212;
+    color: white;
+    height: 56px;
+    display: flex;
+    align-items: center;
+    padding: 0 20px;
+}
+
+.navbar-container {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.menu-icon img,
+.search-button img,
+.upload-icon img,
+.notifications-icon img,
+.profile-icon img {
+    height: 24px;
+}
+
+.logo img {
+    height: 18px;
+}
+
+.search-container {
+    border-radius: 10px;
+    display: flex;
+    flex: 1;
+    max-width: 600px;
+    padding: 0 12px;
+}
+
+.search-input {
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    width: 100%;
+    padding: 2px 6px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    margin-right: 4px;
+    background-color: #121212;
+    color: white;
+}
+
+.search-button {
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    background-color: #323232;
+    border: none;
+    padding: 6px 16px;
+    cursor: pointer;
+}
+
+.icons {
+    display: flex;
+    align-items: center;
+}
+
+.icons > div {
+    padding: 0 18px;
+    display: flex;
+    align-items: center;
+}
+
+.icons img {
+    cursor: pointer;
+}
+
+/* Ajoutez ici vos styles responsives et autres ajustements esthétiques. */
