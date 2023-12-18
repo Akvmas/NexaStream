@@ -3,11 +3,6 @@ body, html {
     padding: 0;
     font-family: 'Roboto', Arial, sans-serif;
 }
-
-.top-nav {
-    /* Styles pour la barre de navigation supérieure */
-}
-
 .profile-container {
     width: 100%;
 }
